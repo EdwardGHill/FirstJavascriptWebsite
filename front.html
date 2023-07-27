@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex</title>
+</head>
+<body>
+    <img src="dex.png" alt="Pokedex Logo" class="w-3/4 mx-auto">
+    <div id="TeamButtonContainer" class="p-4 flex justify-center space-x-4">
+        <div>
+            <button id="randomTeamButton" type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Create Random Team</button> 
+            <div id="teamContainer"></div>
+        </div>
+        <div>
+            <button id="StrongTeamButton" type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Create Strong Team</button> 
+            <div id="strongteamContainer"></div>
+        </div>
+        <div>
+            <button id="WeakTeamButton" type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Create Weak Team</button> 
+            <div id="weakteamContainer"></div>
+        </div>
+        <div>
+            <button id="LegendaryTeamButton" type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Create Legendary Team</button> 
+            <div id="legendaryteamContainer"></div>
+        </div>
+        <div>
+            <button id="RainbowTeamButton" type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Create Rainbow Team</button> 
+            <div id="rainbowteamContainer"></div>
+        </div>
+    </div>
+
+    <div id="ClearTeamsContainer" class="flex justify-center">
+        <button id="clearResultsButton" type="button" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Clear Teams</button>
+    </div>
+
+    <div id="pokemonDetailsContainer" class="bg-gray-100 p-4 mt-4 rounded text-lg font-bold text-center"></div>
+    
+    <div id="SearchContainer" class="flex justify-center p-4 space-x-4">
+        <input type="text" id="pokemonNameInput" placeholder="Enter Pokémon Name" class="p-2 pl-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" autocomplete="off">
+        <button type="button" id="searchButton" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">Search Pokémon</button>
+        
+    </div>
+    <div id="ResultsContainer" class="text-center">
+        <ul id="pokemonList"></ul>
+    </div>
+
+    <div id="GenerationButtonContainer" class="p-4 flex justify-center space-x-4 overflow-y-scroll scrolling-touch">
+        <div>
+            <button id="gen1Button" type="button" class="genButton bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Gen 1</button> 
+        </div>
+        <div>
+            <button id="gen2Button" type="button" class="genButton bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Gen 2</button> 
+        </div>
+        <div>
+            <button id="gen3Button" type="button" class="genButton bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Gen 3</button> 
+        </div>
+        <div>
+            <button id="gen4Button" type="button" class="genButton bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Gen 4</button> 
+        </div>
+        <div>
+            <button id="gen5Button" type="button" class="genButton bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Gen 5</button> 
+        </div>
+        <div>
+            <button id="gen6Button" type="button" class="genButton bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Gen 6</button> 
+        </div>
+        <div>
+            <button id="genClearButton" type="button" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">Clear</button> 
+        </div>
+    </div>
+    <div id="GenContainer" class="text-center mb-4">
+        <ul id="genList" class="grid grid-cols-6 gap-1"></ul>
+    </div>
+
+    <div id="TypeButtonContainer" class="grid grid-cols-10 gap-4 mb-4">
+        <button id="normalButton" type="button" onclick="displayPokemonByType('Normal')" class="typeButton bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-full">Normal</button> 
+        <button id="fireButton" type="button" onclick="displayPokemonByType('Fire')" class="typeButton bg-orange-300 hover:bg-orange-400 text-gray-800 font-bold py-2 px-4 rounded-full">Fire</button> 
+        <button id="waterButton" type="button" onclick="displayPokemonByType('Water')" class="typeButton bg-blue-300 hover:bg-blue-400 text-gray-800 font-bold py-2 px-4 rounded-full">Water</button> 
+        <button id="grassButton" type="button" onclick="displayPokemonByType('Grass')" class="typeButton bg-green-300 hover:bg-green-400 text-gray-800 font-bold py-2 px-4 rounded-full">Grass</button> 
+        <button id="electricButton" type="button" onclick="displayPokemonByType('Electric')" class="typeButton bg-yellow-300 hover:bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full">Electric</button> 
+        <button id="iceButton" type="button" onclick="displayPokemonByType('Ice')" class="typeButton bg-cyan-300 hover:bg-cyan-400 text-gray-800 font-bold py-2 px-4 rounded-full">Ice</button> 
+        <button id="fightingButton" type="button" onclick="displayPokemonByType('Fighting')" class="typeButton bg-red-300 hover:bg-red-400 text-gray-800 font-bold py-2 px-4 rounded-full">Fighting</button> 
+        <button id="poisonButton" type="button" onclick="displayPokemonByType('Poison')" class="typeButton bg-purple-300 hover:bg-purple-400 text-gray-800 font-bold py-2 px-4 rounded-full">Poison</button> 
+        <button id="groundButton" type="button" onclick="displayPokemonByType('Ground')" class="typeButton bg-yellow-700 hover:bg-yellow-800 text-white font-bold py-2 px-4 rounded-full">Ground</button> 
+        <button id="flyingButton" type="button" onclick="displayPokemonByType('Flying')" class="typeButton bg-indigo-300 hover:bg-indigo-400 text-gray-800 font-bold py-2 px-4 rounded-full">Flying</button> 
+        <button id="psychicButton" type="button" onclick="displayPokemonByType('Psychic')" class="typeButton bg-pink-300 hover:bg-pink-400 text-gray-800 font-bold py-2 px-4 rounded-full">Psychic</button> 
+        <button id="bugButton" type="button" onclick="displayPokemonByType('Bug')" class="typeButton bg-lime-300 hover:bg-lime-400 text-gray-800 font-bold py-2 px-4 rounded-full">Bug</button> 
+        <button id="rockButton" type="button" onclick="displayPokemonByType('Rock')" class="typeButton bg-gray-400 hover:bg-gray-500 text-gray-800 font-bold py-2 px-4 rounded-full">Rock</button> 
+        <button id="ghostButton" type="button" onclick="displayPokemonByType('Ghost')" class="typeButton bg-indigo-900 hover:bg-indigo-800 text-white font-bold py-2 px-4 rounded-full">Ghost</button> 
+        <button id="darkButton" type="button" onclick="displayPokemonByType('Dark')" class="typeButton bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded-full">Dark</button> 
+        <button id="dragonButton" type="button" onclick="displayPokemonByType('Dragon')" class="typeButton bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-full">Dragon</button> 
+        <button id="steelButton" type="button" onclick="displayPokemonByType('Steel')" class="typeButton bg-gray-400 hover:bg-gray-500 text-gray-800 font-bold py-2 px-4 rounded-full">Steel</button> 
+        <button id="fairyButton" type="button" onclick="displayPokemonByType('Fairy')" class="typeButton bg-pink-100 hover:bg-pink-200 text-gray-800 font-bold py-2 px-4 rounded-full">Fairy</button>
+        <div></div>
+        <button id="typeClearButton" type="button" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">Clear</button> 
+    </div>
+    
+<div id="TypeContainer" class="text-center">
+    <ul id="typeList" class="grid grid-cols-6 gap-4 auto-rows-min justify-start"></ul>
+</div>
+
+<div id="favoritesContainer" class="bg-gray-100 p-4 mt-4 rounded text-lg font-bold flex justify-center"></div>
+<div id="favoritesButtonContainer" class="flex justify-center">
+    <button id="FavoritesButton" type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-4 mt-4 mb-4 rounded">Show Favorites</button>
+    <button id="ClearFavoritesButton" type="button" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 mt-4 mb-4 rounded">Stop Showing Favorites</button>
+</div>
+
+    <script src="main.js"></script>
+    
+</body>
+</html>
+
